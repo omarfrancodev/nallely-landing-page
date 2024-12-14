@@ -26,6 +26,7 @@ body {
   padding: 16px;
   position: sticky;
   top: 0;
+  z-index: 10;
 }
 
 .landing__content {
@@ -91,17 +92,41 @@ body {
   width: 100%;
   height: max-content;
   margin-bottom: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* Asegura un contexto de posicionamiento */
+  overflow: hidden; /* Evita que los elementos salgan del contenedor */
+}
+
+@keyframes fadeInSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px); /* Desplaza el elemento hacia abajo */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* Posición inicial */
+  }
 }
 
 .landing-content__items-item {
   padding: 16px;
   text-align: center;
+  animation: fadeInSlideUp 0.25s ease-out forwards;
+  height: 100%;
+  opacity: 0; /* Oculto inicialmente */
+  position: relative; /* Evita desbordes */
+}
+
+.landing-content__items-item.full-width {
+  grid-column: 1 / -1;
 }
 
 .services-content {
   background-color: white;
   color: #4b5563;
   font-weight: 400;
+  font-size: smaller;
   border: 1px #ccc solid;
   border-radius: 0.25rem;
 }
@@ -144,8 +169,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
-  width: 2.5rem;
+  font-size: 1.75rem;
+  width: 2rem;
   color: #10b981;
 }
 
@@ -161,26 +186,36 @@ body {
 .modal {
   display: none;
   position: fixed;
-  z-index: 1;
+  z-index: 100;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4); /* Fondo con opacidad */
+  justify-content: center;
+  align-items: center;
 }
 
 .modal-content {
   display: flex;
   flex-flow: column;
   background-color: white;
-  margin: 5% auto;
+
   padding: 20px;
   border-radius: 8px;
   width: 50%;
   max-width: 40vw;
   gap: 1rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Añadir sombra para profundidad */
+}
+
+/* Media Query para pantallas pequeñas */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 90vw; /* 90% del ancho de la pantalla en móviles */
+    max-width: 90vw; /* Asegura que el ancho no se exceda */
+  }
 }
 
 .close-btn {
@@ -220,6 +255,23 @@ select:hover,
 select:focus {
   border-color: #007bff; /* Color de borde al pasar el ratón */
   outline: none; /* Eliminar el borde de enfoque predeterminado */
+}
+
+.modal-content__container {
+  display: none;
+  width: 100%;
+  flex-flow: column wrap;
+  justify-content: flex-start;
+  align-content: space-between;
+  gap: 10px;
+}
+
+.modal-content__opciones {
+  display: flex;
+  width: 100%;
+  flex-flow: column wrap;
+  justify-content: flex-start;
+  gap: 10px;
 }
 
 .checkbox-container {

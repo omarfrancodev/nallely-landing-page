@@ -8,7 +8,7 @@ import {
 export function assignModalEvents(modal, openModalButton, closeButton) {
   // Abrir modal
   openModalButton.addEventListener("click", () => {
-    modal.style.display = "block"; // Mostrar el modal
+    modal.style.display = "flex"; // Mostrar el modal
   });
 
   // Cerrar modal

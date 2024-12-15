@@ -21,7 +21,7 @@ body {
   display: flex;
   flex-flow: row nowrap;
   width: 100%;
-  height: max-content;
+  height: 64px;
   background: linear-gradient(225deg, #fbfaeecc 0%, #ffffffcc 100%);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -79,6 +79,7 @@ body {
   cursor: pointer;
 }
 .landing__container {
+  margin-top: 64px;
   background: linear-gradient(135deg, #e29ffd 0%, #a43dd5 40%, #7400ac 100%);
 }
 

@@ -1,48 +1,63 @@
-// Eventos.js
-
 import {
   displayServiceOptions,
   updateTotalPrice,
+  loadServiceOptions,
+  getSelectedOptions,
+  toggleHairOptions,
 } from "./Funciones-desarrollo.js";
+import { domElements } from "./Variables-dom.js";
 
-export function assignModalEvents(modal, openModalButton, closeButton) {
+export function loadEvents() {
+  assignModalEvents();
+  assignServiceSelectorEvent();
+  assignServiceOptionsEvent();
+}
+
+export function assignModalEvents() {
+  const { modal, openModalButton, closeButton } = domElements;
+
   // Abrir modal
   openModalButton.addEventListener("click", () => {
+    loadServiceOptions();
     modal.style.display = "flex"; // Mostrar el modal
+    document.body.style.overflow = "hidden"; // Evita el desplazamiento del fondo
   });
 
   // Cerrar modal
   closeButton.addEventListener("click", () => {
-    modal.style.display = "none"; // Ocultar el modal
+    hideModal(modal);
   });
 
   // Cerrar modal al hacer clic fuera del contenido
   window.addEventListener("click", (event) => {
     if (event.target === modal) {
-      modal.style.display = "none"; // Ocultar el modal si se hace clic fuera de él
+      hideModal(modal);
     }
   });
 }
 
-export function assignServiceSelectorEvent(
-  serviceSelector,
-  serviceOptionsContainer,
-  totalPriceElement,
-  servicesData,
-  serviceOptionsList
-) {
+function hideModal(modal) {
+  modal.style.display = "none"; // Ocultar el modal si se hace clic fuera de él
+  document.body.style.overflow = "auto"; // Restaura el desplazamiento
+}
+
+export function assignServiceSelectorEvent() {
+  const { serviceSelector, serviceOptionsContainer, totalPriceElement } =
+    domElements;
+
   // Manejar el cambio de servicio seleccionado
   serviceSelector.addEventListener("change", (e) => {
-    const selectedService = e.target.value;
+    const selectedService = serviceSelector.selectedValue;
+
     if (selectedService) {
       // Mostrar opciones extras y calcular el precio
-      displayServiceOptions(
-        selectedService,
-        servicesData,
-        serviceOptionsList,
-        serviceOptionsContainer
-      );
-      updateTotalPrice(selectedService, [], servicesData, totalPriceElement);
+      displayServiceOptions(selectedService);
+
+      // Ocultar/mostrar largo y cantidad según el tipo de servicio
+      toggleHairOptions(selectedService);
+
+      // Calcular el precio inicial (sin servicios adicionales)
+      updateTotalPrice(selectedService, []);
     } else {
       serviceOptionsContainer.style.display = "none";
       totalPriceElement.textContent = "0";
@@ -50,28 +65,27 @@ export function assignServiceSelectorEvent(
   });
 }
 
-export function assignServiceOptionsEvent(
-  serviceOptionsList,
-  serviceSelector,
-  totalPriceElement,
-  servicesData
-) {
-  // Escuchar cambios en los checkboxes y actualizar el precio
-  serviceOptionsList.addEventListener("change", () => {
-    const selectedOptions = [];
-    const checkboxes = document.querySelectorAll(
-      ".checkbox-container input:checked"
-    );
-    checkboxes.forEach((checkbox) => {
-      selectedOptions.push(checkbox.value);
-    });
+export function assignServiceOptionsEvent() {
+  const { serviceOptionsList, serviceSelector, hairLength, hairAmount } =
+    domElements;
 
-    const selectedService = serviceSelector.value;
-    updateTotalPrice(
-      selectedService,
-      selectedOptions,
-      servicesData,
-      totalPriceElement
-    );
+  // Escuchar cambios en los checkboxes y recalcular el precio
+  serviceOptionsList.addEventListener("change", () => {
+    const selectedOptions = getSelectedOptions();
+    const selectedService = serviceSelector.selectedValue;
+    updateTotalPrice(selectedService, selectedOptions);
+  });
+
+  // Escuchar cambios en los selectores de largo y cantidad
+  hairLength.addEventListener("change", () => {
+    const selectedOptions = getSelectedOptions();
+    const selectedService = serviceSelector.selectedValue;
+    updateTotalPrice(selectedService, selectedOptions);
+  });
+
+  hairAmount.addEventListener("change", () => {
+    const selectedOptions = getSelectedOptions();
+    const selectedService = serviceSelector.selectedValue;
+    updateTotalPrice(selectedService, selectedOptions);
   });
 }

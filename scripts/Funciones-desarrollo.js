@@ -7,7 +7,8 @@ export function showServices() {
   // Cargar servicios en el contenedor
   servicesData.services.forEach((service, index) => {
     const divContainerItem = document.createElement("div");
-    divContainerItem.className = "landing-content__items-item services-content";
+    divContainerItem.className =
+      "landing-container-content-data__items-item services-content";
     divContainerItem.innerHTML = `${service}`;
     contentItemsServices.appendChild(divContainerItem);
 

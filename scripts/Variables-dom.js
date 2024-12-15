@@ -8,7 +8,9 @@ export const domElements = {
   serviceOptionsContainer: document.getElementById("serviceOptionsContainer"),
   serviceOptionsList: document.getElementById("serviceOptionsList"),
   totalPriceElement: document.getElementById("totalPrice"),
-  contentItemsServices: document.querySelector(".landing-content__items"),
+  contentItemsServices: document.querySelector(
+    ".landing-container-content-data__items"
+  ),
   appointmentRequierd: document.getElementById("appointmentRequierd"),
   hairLength: document.getElementById("hairLength"),
   hairAmount: document.getElementById("hairAmount"),

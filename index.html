@@ -12,59 +12,68 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <script type="module" src="./components/Select.js"></script>
   </head>
   <body>
     <section class="landing__header">
-      <h2>ESTETICA UNISEX "NALLELY"</h2>
+      <div class="landing-header__content">
+        <i class="fa-solid fa-scissors"></i>
+        <h2>NALLELY</h2>
+      </div>
+      <button id="btn-cotizar" class="landing__header-button">
+        Cotizar Servicio
+      </button>
     </section>
     <section class="landing__content">
       <div class="landing-content__header">
-        <h2 class="landing-content__header title">
-          Tu belleza, nuestra pasión
-        </h2>
-        <p class="landing-content__header-text">
-          Servicios de belleza para todos
+        <p class="landing-content__header-title">
+          Descubre tu mejor versión en ESTETICA UNISEX "NALLELY"
         </p>
-        <button class="landing-content__header-button">Cotizar Servicio</button>
-      </div>
-      <div class="landing-content__items">
-        <div class="landing-content__items-item full-width">
-          <h3 class="title">Nuestros Servicios</h3>
+        <p class="landing-content__header-text">Tu belleza, nuestra pasión</p>
+        <div class="landing-content-header__butons">
+          <a href="#contacto" class="landing-content__header-button"
+            >Información de contacto</a
+          >
         </div>
       </div>
-      <div class="landing-content__info">
-        <h3 class="title">Contáctanos</h3>
+      <section id="servicios" class="landing-content__items">
+        <div class="landing-content__items-item full-width">
+          <h2 class="title-color">Nuestros Servicios</h2>
+        </div>
+      </section>
+      <section id="contacto" class="landing-content__info">
+        <h2 class="title-color">Contáctanos</h2>
         <div class="landing-conten-info__data">
           <div class="landing-conten-info-data__container">
-            <i class="fa-solid fa-phone"></i>
+            <i class="fa-solid fa-phone subtitle-color"></i>
             <div class="landing-conten-info-data__container-text">
-              <h4 class="subtitle">Teléfono</h4>
+              <h4 class="subtitle-color">Teléfono</h4>
               <p>+52 (967) 1273320</p>
             </div>
           </div>
           <div class="landing-conten-info-data__container">
-            <i class="fa-solid fa-location-dot"></i>
+            <i class="fa-solid fa-location-dot subtitle-color"></i>
             <div class="landing-conten-info-data__container-text">
-              <h4 class="subtitle">Dirección</h4>
+              <h4 class="subtitle-color">Dirección</h4>
               <p>Av. Primavera 19, Montes Azules</p>
             </div>
           </div>
           <div class="landing-conten-info-data__container">
-            <i class="fa-regular fa-clock"></i>
+            <i class="fa-regular fa-clock subtitle-color"></i>
             <div class="landing-conten-info-data__container-text">
-              <h4 class="subtitle">Horario</h4>
+              <h4 class="subtitle-color">Horario de Atención</h4>
               <p>Lunes - Sábado: 4:00 PM - 8:00 PM</p>
             </div>
           </div>
           <div class="landing-conten-info-data__container">
-            <i class="fa-solid fa-house-user"></i>
+            <i class="fa-solid fa-house-user subtitle-color"></i>
             <div class="landing-conten-info-data__container-text">
-              <h4 class="subtitle">Servicio a Domicilio</h4>
+              <h4 class="subtitle-color">Servicio a Domicilio</h4>
               <p>Disponible bajo cita previa</p>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </section>
     <!-- Modal de Cotización -->
     <div id="cotizadorModal" class="modal">
@@ -73,26 +82,35 @@
           <span class="close-btn">&times;</span>
           <h2>Cotizador de Servicios</h2>
         </div>
-
-        <label for="serviceSelector"><h3>Servicio</h3></label>
-        <select id="serviceSelector">
-          <option value="">Selecciona un servicio</option>
-          <!-- Los servicios se agregarán dinámicamente con JS -->
-        </select>
-
+        <!-- Los servicios se agregarán dinámicamente con JS -->
+        <custom-selector id="serviceSelector"></custom-selector>
         <div id="serviceOptionsContainer" class="modal-content__container">
           <h4>Opciones Adicionales</h4>
+
+          <div>
+            <custom-selector
+              id="hairLength"
+              label="Largo del cabello:"
+              options='["Corto", "Mediano", "Largo"]'
+            ></custom-selector>
+          </div>
+          <div>
+            <custom-selector
+              id="hairAmount"
+              label="Cantidad de cabello:"
+              options='["Poco", "Mucho"]'
+            ></custom-selector>
+          </div>
           <div id="serviceOptionsList" class="modal-content__opciones">
             <!-- Los servicios extra se agregarán dinámicamente con JS -->
           </div>
         </div>
 
         <div class="modal__contente-total">
-          <h3>Total Estimado: <span id="totalPrice">0</span> MXN</h3>
+          <h3>Total Estimado: $<span id="totalPrice">0</span></h3>
         </div>
       </div>
     </div>
-
     <script src="main.js" type="module"></script>
   </body>
 </html>

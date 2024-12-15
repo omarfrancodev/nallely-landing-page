@@ -23,10 +23,10 @@ body {
   flex-flow: row nowrap;
   width: 100%;
   height: max-content;
-  background-color: #fffff4cc;
+  background: linear-gradient(225deg, #fbfaeecc 0%, #ffffffcc 100%);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  color: #410064;
+  color: #550081;
   justify-content: space-between;
   align-items: center;
   padding: 16px;
@@ -79,11 +79,14 @@ body {
   background-color: #370056;
   cursor: pointer;
 }
+.landing__container {
+  background: linear-gradient(135deg, #e29ffd 0%, #a43dd5 40%, #7400ac 100%);
+}
 
-.landing__content {
+.landing-container__content {
   display: flex;
   flex-flow: column;
-  background: linear-gradient(135deg, #f1c4fc 0%, #d47bff 40%, #7400ac 100%);
+
   width: 100%;
   height: max-content;
   margin: auto;
@@ -92,95 +95,159 @@ body {
   align-content: space-between;
 }
 
-.landing-content__header {
+.landing-container-content__header {
   display: flex;
   flex-flow: column;
-  width: 70%;
   height: max-content;
   justify-content: center;
   align-items: flex-start;
   gap: 1rem;
   margin-bottom: 1rem;
-  color: #ffffea;
+  color: white;
 }
 
 .title-color {
-  color: #370056;
+  color: #550081;
 }
 
 .subtitle-color {
   color: #7400ac;
 }
 
-.landing-content__header-title {
+.landing-container-content__header-title {
+  width: 70%;
   font-weight: 800;
   font-size: 3.5rem;
   text-shadow: -1px 1px 10px rgba(0, 0, 0, 0.1);
   letter-spacing: -0.025em;
 }
 
-.landing-content__header-text {
+.landing-container-content__header-text {
   font-weight: 500;
   font-size: 1.75rem;
 }
 
 @media (max-width: 768px) {
-  .landing-content__header {
-    width: 85%;
+  .landing-container-content__header {
+    width: 100%;
   }
-  .landing-content__header-title {
+  .landing-container-content__header-title {
     font-weight: 700;
     font-size: 2rem;
   }
-  .landing-content__header-text {
+  .landing-container-content__header-text {
     font-weight: 500;
     font-size: 1.25rem;
   }
 }
 
-.landing-content__header-button {
+.landing-container-content-header__buttons {
   display: flex;
-  min-width: max-content;
+  width: 100%;
+  flex-flow: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+
+.landing-container-content__header-button {
+  display: flex;
   width: max-content;
   height: max-content;
   padding: 0.75rem 1rem;
-  background-color: #7400ac;
-  color: white;
+  background-color: white;
+  color: #7400ac;
   border-radius: 0.5rem;
   font-size: medium;
   font-weight: 700;
   text-decoration: none;
 }
 
-.landing-content__header-button:hover {
-  background-color: #370056;
+.landing-container-content__header-button:hover {
+  background-color: #7400ac;
+  color: white;
   cursor: pointer;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
-.landing-content__items {
+.landing-container-content__data {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-content: space-between;
+  background: linear-gradient(225deg, #fbfaee 0%, #ffffff 100%);
+}
+
+.landing-container-content-data__experience {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  margin: 2rem 1rem;
+  padding: 1rem;
+  background-color: #ffffff66;
+  border-radius: 0.5rem;
+  box-shadow: -6px 6px 10px -5px rgba(0, 0, 0, 0.25);
+  color: #1f2937;
+}
+
+.landing-container-content-data__experience-title {
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.75rem;
+  padding-bottom: 1.5rem;
+}
+
+.landing-container-content-data__experience-subtitle {
+  text-align: start;
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.landing-container-content-data__experience-text {
+  text-align: start;
+  font-size: 1.25rem;
+  font-weight: 300;
+  line-height: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .landing-container-content-data__experience-subtitle {
+    font-size: 1.25rem;
+  }
+
+  .landing-container-content-data__experience-text {
+    font-size: 1.1rem;
+  }
+}
+
+.landing-container-content-data__items {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 10px;
   width: 100%;
   height: max-content;
-  margin-bottom: 1.5rem;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  background: linear-gradient(135deg, #ffffff 0%, #f7f5dd 50%, #f9f3c1 100%);
-  box-shadow: -6px 6px 30px -10px rgba(0, 0, 0, 0.5);
-  border-radius: 0.25rem;
-  padding: 1rem;
+  padding: 1.75rem 1rem;
   gap: 1rem;
 }
 
 @media (max-width: 768px) {
-  .landing-content__items {
+  .landing-container-content-data__items {
     grid-template-columns: 1fr 1fr;
     gap: 0.5rem 1rem;
   }
+}
+
+.landing-container-content-data__items p {
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.75rem;
+  padding-bottom: 1.5rem;
 }
 
 @keyframes fadeInSlideUp {
@@ -194,93 +261,103 @@ body {
   }
 }
 
-.landing-content__items-item {
-  text-align: center;
+.landing-container-content-data__items-item {
   animation: fadeInSlideUp 0.25s ease-out forwards;
   height: 100%;
   opacity: 0; /* Oculto inicialmente */
   position: relative; /* Evita desbordes */
 }
 
-.landing-content__items-item.full-width {
+.landing-container-content-data__items-item.full-width {
   grid-column: 1 / -1;
 }
 
-.services-content {
+.landing-container-content-data__items-item.services-content {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 16px;
-  background: white;
-  color: black;
-  font-weight: 400;
+  background-color: #e29ffd22;
+  box-shadow: -6px 6px 5px -5px rgba(0, 0, 0, 0.25);
+  color: #550081;
+  font-weight: 500;
   font-size: 1rem;
-  border: 2px #ccc solid;
   border-radius: 0.25rem;
+  text-align: center;
 }
 
 @media (max-width: 768px) {
-  .services-content {
-    font-size: smaller;
-    border: 1px #ccc solid;
+  .landing-container-content-data__items-item.services-content {
+    font-size: 0.85rem;
   }
 }
 
-.landing-content__info {
+.landing-container-content__info {
   display: flex;
   flex-flow: column;
-  padding: 1.5rem;
-  background-color: white;
+  padding: 2rem 1rem;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 2rem;
   width: 100%;
   height: max-content;
-  box-shadow: -6px 6px 30px -10px rgba(0, 0, 0, 0.5);
-  border-radius: 0.25rem;
+  color: white;
 }
 
-.landing-conten-info__data {
+.landing-container-content__info p {
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.75rem;
+}
+
+.landing-container-content-info__data {
   display: flex;
-  flex-flow: column;
-  align-items: flex-start;
+  flex-flow: row;
+  justify-content: space-around;
+  align-items: center;
   width: 100%;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
-.landing-conten-info-data__container {
+@media (max-width: 768px) {
+  .landing-container-content-info__data {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    width: 100%;
+    gap: 2rem;
+  }
+}
+
+.landing-container-content-info-data__container {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
   justify-content: space-between;
-  gap: 1.5rem;
+  align-items: center;
+  gap: 1.25rem;
   width: max-content;
 }
 
-.landing-conten-info-data__container i {
+.landing-container-content-info-data__container i {
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.75rem;
-  width: 2rem;
 }
 
-.landing-conten-info-data__container-text {
+.landing-container-content-info-data__container-text {
   display: flex;
   flex-flow: column;
   justify-content: space-between;
+  align-items: center;
   gap: 10px;
   width: max-content;
 }
 
-.landing-conten-info-data__container-text p {
+.landing-container-content-info-data__container-text p {
   font-size: 1rem;
-  color: #71717a;
-}
-
-@media (max-width: 768px) {
-  .landing-conten-info-data__container-text p {
-    font-size: 0.85rem;
-  }
+  font-weight: 500;
+  color: #ddd;
 }
 
 /* ---------------------------------- Estilos para el Modal ---------------------------------- */
@@ -410,7 +487,7 @@ select:focus {
 .modal__contente-total {
   display: flex;
   justify-content: flex-end;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
 }
 

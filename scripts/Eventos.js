@@ -4,6 +4,7 @@ import {
   loadServiceOptions,
   getSelectedOptions,
   toggleHairOptions,
+  setFloatingButtonBehavior,
 } from "./Funciones-desarrollo.js";
 import { domElements } from "./Variables-dom.js";
 
@@ -11,6 +12,13 @@ export function loadEvents() {
   assignModalEvents();
   assignServiceSelectorEvent();
   assignServiceOptionsEvent();
+}
+
+export function handleFloatingButtonVisibility() {
+  // Mostrar el botón si se scrollea hacia abajo, ocultarlo si está arriba
+  window.addEventListener("scroll", () => {
+    setFloatingButtonBehavior();
+  });
 }
 
 export function assignModalEvents() {

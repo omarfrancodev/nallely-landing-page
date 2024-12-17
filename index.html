@@ -12,7 +12,6 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <script type="module" src="./components/Select.js"></script>
   </head>
   <body>
     <section class="landing__header">
@@ -20,28 +19,58 @@
         <i class="fa-solid fa-scissors"></i>
         <h2>NALLELY</h2>
       </div>
-      <button id="btn-cotizar" class="landing__header-button">
-        Cotizar Servicio
-      </button>
+      <a href="#" target="_blank" rel="noopener" class="whatsapp-button"
+        ><i class="fa-brands fa-whatsapp"></i>Contactar</a
+      >
     </section>
     <div class="landing__container">
+      <!-- Botón flotante -->
+      <a
+        href="#"
+        target="_blank"
+        rel="noopener"
+        id="floatingContactButton"
+        class="floating-contact-button"
+        title="Contactar"
+        ><i class="fa-brands fa-whatsapp"></i
+      ></a>
       <section class="landing-container__content">
         <div class="landing-container-content__header">
           <p class="landing-container-content__header-title">
-            Descubre tu mejor versión en ESTETICA UNISEX "NALLELY"
+            <i class="fa-solid fa-scissors"></i> NALLELY ESTÉTICA UNISEX
           </p>
           <p class="landing-container-content__header-text">
-            "Descubre tu belleza interior, muestra tu estilo exterior"
+            <i class="fa-solid fa-scissors"></i> NALLELY es una estética unisex
+            especializada en cuidado personal, belleza y estilo.<br />
+            Nos enorgullece brindarte los mejores servicios, como:
+            <span class="resaltar-texto"
+              >cortes, tintes, luces, mechas, depilación, peinados y mucho
+              más,</span
+            >
+            siempre enfocados en resaltar tu belleza de la manera que más te
+            gusta.
+          </p>
+          <p class="landing-container-content__header-subtitle">
+            "Descubre tu mejor versión, muestra tu estilo exterior"
           </p>
           <div class="landing-container-content-header__buttons">
+            <a
+              href="#"
+              class="landing-container-content__header-button"
+              id="btn-cotizar"
+              >Cotizar Servicio</a
+            >
             <a
               href="#experiencia"
               class="landing-container-content__header-button"
               >Nuestra experiencia</a
             >
-            <a href="#contacto" class="landing-container-content__header-button"
-              >Información de contacto</a
+            <a
+              href="#contacto"
+              class="landing-container-content__header-button"
             >
+              Nuestra información
+            </a>
           </div>
         </div>
       </section>
@@ -91,21 +120,30 @@
             <i class="fa-solid fa-phone"></i>
             <div class="landing-container-content-info-data__container-text">
               <h3>Teléfono</h3>
-              <p>+52 (967) 1273320</p>
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener"
+                class="whatsapp-button"
+                rel="noopener"
+                ><i class="fa-brands fa-whatsapp"></i>52 (967) 1273320</a
+              >
+              <a href="tel:+529671273320" class="call-tel-button"
+                ><i class="fa-solid fa-phone"></i>52 (967) 1273320</a
+              >
             </div>
           </div>
           <div class="landing-container-content-info-data__container">
             <i class="fa-solid fa-location-dot"></i>
             <div class="landing-container-content-info-data__container-text">
               <h3>Dirección</h3>
-              <p>Av. Primavera 19, Montes Azules</p>
             </div>
             <a
-              class="landing-container-content-info-data__container-button"
+              class="google-maps-button"
               href="https://maps.app.goo.gl/xUJCvhi2f4yVWHaKA"
               target="_blank"
               rel="noopener noreferrer"
-              >Abrir en Google Maps</a
+              >Av. Primavera 19, Montes Azules</a
             >
           </div>
           <div class="landing-container-content-info-data__container">
@@ -124,42 +162,6 @@
           </div>
         </div>
       </section>
-    </div>
-    <!-- Modal de Cotización -->
-    <div id="cotizadorModal" class="modal">
-      <div class="modal-content">
-        <div>
-          <span class="close-btn">&times;</span>
-          <h2>Cotizador de Servicios</h2>
-        </div>
-        <!-- Los servicios se agregarán dinámicamente con JS -->
-        <custom-selector id="serviceSelector"></custom-selector>
-        <div id="serviceOptionsContainer" class="modal-content__container">
-          <h4>Opciones Adicionales</h4>
-
-          <div>
-            <custom-selector
-              id="hairLength"
-              label="Largo del cabello:"
-              options='["Corto", "Mediano", "Largo"]'
-            ></custom-selector>
-          </div>
-          <div>
-            <custom-selector
-              id="hairAmount"
-              label="Cantidad de cabello:"
-              options='["Poco", "Mucho"]'
-            ></custom-selector>
-          </div>
-          <div id="serviceOptionsList" class="modal-content__opciones">
-            <!-- Los servicios extra se agregarán dinámicamente con JS -->
-          </div>
-        </div>
-
-        <div class="modal__contente-total">
-          <h3>Total Aproximado: $<span id="totalPrice">0</span></h3>
-        </div>
-      </div>
     </div>
     <script src="main.js" type="module"></script>
   </body>

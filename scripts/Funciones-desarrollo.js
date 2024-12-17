@@ -13,11 +13,58 @@ export function showServices() {
     contentItemsServices.appendChild(divContainerItem);
 
     // Calcular el retraso dinámicamente basado en el índice
-    const delay = index * 0.1; // 0.1 segundos entre cada uno
+    const delay = index * 0.05; // 0.1 segundos entre cada uno
 
     // Asignar el retraso de la animación de forma dinámica
     divContainerItem.style.animationDelay = `${delay}s`;
   });
+}
+
+export function assignWhatsappContent() {
+  const whatsappButtons = domElements.whatsappButtons;
+
+  const whatsappURL = getWhatsappURL();
+  // Asignar la URL al enlace
+  whatsappButtons.forEach((button) => {
+    button.href = whatsappURL;
+  });
+}
+
+function getWhatsappURL() {
+  const serviceName = "NOMBRE-DEL-SERVICIO"; // Nombre del servicio (puede ser dinámico)
+  const phoneNumber = "529671273320"; // Número de WhatsApp en formato internacional
+
+  // Construir el mensaje
+  const message = `Hola buen día.%0AMe gustaría conocer más acerca del siguiente servicio: ${serviceName}.%0AMuchas gracias`;
+
+  // Generar la URL de WhatsApp
+  return `https://wa.me/${phoneNumber}?text=${message}`;
+}
+
+export function setFloatingButtonBehavior() {
+  const { floatingContactButton, landingHeader, contactoContainer } =
+    domElements;
+
+  // Obtener las alturas de los elementos relevantes
+  const headerHeight = landingHeader ? landingHeader.offsetHeight : 0;
+  const contactoTop = contactoContainer
+    ? contactoContainer.offsetTop - contactoContainer.offsetHeight
+    : 0;
+
+  // Obtener la posición del scroll
+  const scrollPosition = window.scrollY; // Distancia desde el tope
+
+  // Verificar si el scroll está en el rango entre el header y el contacto
+  if (scrollPosition > headerHeight && scrollPosition < contactoTop) {
+    // Si estamos entre el header y el contacto, mostrar el botón
+    const whatsappURL = getWhatsappURL();
+    floatingContactButton.href = whatsappURL;
+    floatingContactButton.classList.add("show");
+  } else {
+    // Si el scroll ha pasado el contacto o aún no ha pasado el header, ocultar el botón
+    floatingContactButton.href = "#";
+    floatingContactButton.classList.remove("show");
+  }
 }
 
 export function loadServiceOptions() {

@@ -21,17 +21,15 @@ body {
   display: flex;
   flex-flow: row nowrap;
   width: 100%;
-  height: 64px;
-  background: linear-gradient(135deg, #ffffffcc 0%, #ffffe7cc 100%);
+  height: max-content;
+  background: linear-gradient(135deg, #ffffff 0%, #ffffdf 100%);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   color: #550081;
   justify-content: space-between;
   align-items: center;
-  padding: 16px;
-  position: fixed;
-  top: 0;
-  z-index: 10;
+  padding: 0.75rem 1rem;
+  position: relative; /* Header es relativo */
 }
 
 .landing-header__content {
@@ -60,26 +58,83 @@ body {
   }
 }
 
-.landing__header-button {
-  display: block;
+.whatsapp-button {
+  display: flex;
   min-width: max-content;
   width: max-content;
   height: max-content;
   padding: 0.75rem 1rem;
-  background-color: #7400ac;
+  background-color: #25d366;
   color: white;
   border: none;
   border-radius: 0.25rem;
   font-size: medium;
   font-weight: 700;
+  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.landing__header-button:hover {
-  background-color: #370056;
+.whatsapp-button:hover {
+  background-color: #24bc5d;
   cursor: pointer;
 }
+
+.whatsapp-button i {
+  font-size: 1rem;
+}
+
+/* Botón flotante */
+.floating-contact-button {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background-color: #25d366;
+  color: white;
+  font-size: 1.75rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  opacity: 0; /* Invisible inicialmente */
+  transform: scale(0.9); /* Reducido inicialmente */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Animaciones suaves */
+  z-index: 100;
+}
+
+/* Hover sobre el botón flotante */
+.floating-contact-button:hover {
+  background-color: #24bc5d;
+  transform: scale(1);
+  cursor: pointer;
+}
+
+/* Mostrar el botón flotante */
+.floating-contact-button.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@media (max-width: 768px) {
+  .floating-contact-button {
+    bottom: 0.75rem;
+    right: 0.75rem;
+    width: 3rem;
+    height: 3rem;
+    color: white;
+    font-size: 1.5rem;
+  }
+}
+
 .landing__container {
-  margin-top: 64px;
+  width: 100%;
+  height: max-content;
   background: linear-gradient(135deg, #e29ffd 0%, #a43dd5 40%, #7400ac 100%);
 }
 
@@ -119,11 +174,32 @@ body {
   font-size: 3.5rem;
   text-shadow: -1px 1px 10px rgba(0, 0, 0, 0.1);
   letter-spacing: -0.025em;
+  margin-bottom: 1rem;
+}
+
+.landing-container-content__header-title i {
+  font-size: 3rem;
+}
+
+.landing-container-content__header-subtitle {
+  font-weight: 600;
+  font-size: 2rem;
+  margin-bottom: 1rem;
 }
 
 .landing-container-content__header-text {
+  background: linear-gradient(90deg, #fffff044 0%, #e29ffd66 100%);
   font-weight: 500;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
+  text-align: justify;
+  margin-bottom: 0.75rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.resaltar-texto {
+  font-style: italic;
+  color: #640096;
 }
 
 @media (max-width: 768px) {
@@ -133,9 +209,19 @@ body {
   .landing-container-content__header-title {
     width: 100%;
     font-weight: 700;
+    font-size: 2.25rem;
+  }
+
+  .landing-container-content__header-title i {
     font-size: 2rem;
   }
+
+  .landing-container-content__header-subtitle {
+    font-size: 1.5rem;
+  }
+
   .landing-container-content__header-text {
+    background: linear-gradient(90deg, #fffff066 0%, #e29ffd66 100%);
     font-weight: 500;
     font-size: 1.25rem;
   }
@@ -179,51 +265,6 @@ body {
   background: linear-gradient(135deg, #ffffff 0%, #ffffdf 100%);
 }
 
-.landing-container-content-data__experience {
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  margin: 2rem 1rem;
-  padding: 1rem;
-  background-color: #ffffff88;
-  border-radius: 0.5rem;
-  box-shadow: -6px 6px 10px -5px rgba(0, 0, 0, 0.25);
-  color: #1f2937;
-  scroll-margin-top: 64px;
-}
-
-.landing-container-content-data__experience-title {
-  text-align: center;
-  font-weight: 700;
-  font-size: 1.75rem;
-  padding-bottom: 1.5rem;
-}
-
-.landing-container-content-data__experience-subtitle {
-  text-align: start;
-  font-weight: 600;
-  font-size: 1.5rem;
-  margin-bottom: 1.25rem;
-}
-
-.landing-container-content-data__experience-text {
-  text-align: start;
-  font-size: 1.25rem;
-  font-weight: 300;
-  line-height: 1.75rem;
-  margin-bottom: 1rem;
-}
-
-@media (max-width: 768px) {
-  .landing-container-content-data__experience-subtitle {
-    font-size: 1.25rem;
-  }
-
-  .landing-container-content-data__experience-text {
-    font-size: 1.1rem;
-  }
-}
-
 .landing-container-content-data__items {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -245,14 +286,14 @@ body {
 }
 
 .landing-container-content-data__items-title {
-  text-align: center;
+  text-align: start;
   font-weight: 700;
   font-size: 1.75rem;
   margin-bottom: 1.25rem;
 }
 
 .landing-container-content-data__items-description {
-  text-align: center;
+  text-align: start;
   font-size: 1.15rem;
   font-weight: 500;
   margin-bottom: 1.5rem;
@@ -300,6 +341,50 @@ body {
   }
 }
 
+.landing-container-content-data__experience {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  margin: 2rem 1rem;
+  padding: 1rem;
+  background-color: #ffffff88;
+  border-radius: 0.5rem;
+  box-shadow: -6px 6px 10px -5px rgba(0, 0, 0, 0.25);
+  color: #1f2937;
+}
+
+.landing-container-content-data__experience-title {
+  text-align: start;
+  font-weight: 700;
+  font-size: 1.75rem;
+  padding-bottom: 1.5rem;
+}
+
+.landing-container-content-data__experience-subtitle {
+  text-align: start;
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.landing-container-content-data__experience-text {
+  text-align: start;
+  font-size: 1.25rem;
+  font-weight: 300;
+  line-height: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .landing-container-content-data__experience-subtitle {
+    font-size: 1.25rem;
+  }
+
+  .landing-container-content-data__experience-text {
+    font-size: 1.1rem;
+  }
+}
+
 .landing-container-content__info {
   display: flex;
   flex-flow: column;
@@ -310,7 +395,6 @@ body {
   width: 100%;
   height: max-content;
   color: white;
-  scroll-margin-top: 64px;
 }
 
 .landing-container-content__info p {
@@ -326,6 +410,7 @@ body {
   align-items: start;
   width: 100%;
   gap: 2rem;
+  padding-bottom: 1.5rem;
 }
 
 @media (max-width: 768px) {
@@ -369,157 +454,51 @@ body {
   color: #ddd;
 }
 
-.landing-container-content-info-data__container-button {
+.call-tel-button {
+  display: flex;
+  min-width: max-content;
+  width: max-content;
+  height: max-content;
+  padding: 0.75rem 1rem;
+  background-color: #c7466e;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  font-size: medium;
+  font-weight: 700;
+  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.call-tel-button:hover {
+  background-color: #aa3b5e;
+  cursor: pointer;
+}
+
+.call-tel-button i {
+  font-size: 1.5rem;
+}
+
+.google-maps-button {
   display: flex;
   width: max-content;
   height: max-content;
   padding: 0.75rem 1rem;
-  background-color: white;
-  color: #4285f4;
+  background-color: #4285f4;
+  color: white;
   border-radius: 0.5rem;
   font-size: medium;
   font-weight: 700;
   text-decoration: none;
   box-shadow: -2px 2px 10px -5px rgba(0, 0, 0, 0.5);
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.landing-container-content-info-data__container-button:hover {
-  background-color: #4285f4;
-  color: white;
-  cursor: pointer;
-}
-
-/* ---------------------------------- Estilos para el Modal ---------------------------------- */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 100;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4); /* Fondo con opacidad */
-  backdrop-filter: blur(3px); /* Agrega un efecto de desenfoque */
-  -webkit-backdrop-filter: blur(3px);
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  display: flex;
-  flex-flow: column;
+.google-maps-button:hover {
   background-color: white;
-
-  padding: 20px;
-  border-radius: 8px;
-  width: 50%;
-  max-width: 40vw;
-  gap: 1rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Añadir sombra para profundidad */
-}
-
-/* Media Query para pantallas pequeñas */
-@media (max-width: 768px) {
-  .modal-content {
-    width: 95vw; /* 90% del ancho de la pantalla en móviles */
-    max-width: 95vw; /* Asegura que el ancho no se exceda */
-  }
-}
-
-.close-btn {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+  color: #4285f4;
   cursor: pointer;
-}
-
-.close-btn:hover,
-.close-btn:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-/* Diseño del Selector */
-select,
-.checkbox-container {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  gap: 10px;
-  width: 100%;
-}
-
-select {
-  padding: 8px 12px;
-  font-size: 16px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  transition: border 0.3s ease;
-}
-
-select:hover,
-select:focus {
-  border-color: #007bff; /* Color de borde al pasar el ratón */
-  outline: none; /* Eliminar el borde de enfoque predeterminado */
-}
-
-.modal-content__container {
-  display: none;
-  width: 100%;
-  flex-flow: column wrap;
-  justify-content: flex-start;
-  align-content: space-between;
-  gap: 10px;
-}
-
-.modal-content__opciones {
-  display: flex;
-  width: 100%;
-  flex-flow: column wrap;
-  justify-content: flex-start;
-  gap: 10px;
-}
-
-#hairLength,
-#hairAmount {
-  display: none; /* Ocultos por defecto */
-}
-
-.checkbox-container {
-  display: flex;
-  flex-flow: row wrap;
-  gap: 10px;
-}
-
-.checkbox-container input[type="checkbox"] {
-  accent-color: #007bff; /* Color del check de los checkboxes */
-  margin-right: 10px;
-  cursor: pointer;
-  transform: scale(1.2); /* Aumenta ligeramente el tamaño del checkbox */
-}
-
-.checkbox-container label {
-  display: flex;
-  align-items: center;
-  font-size: 16px;
-  gap: 5px;
-}
-
-.checkbox-container input[type="checkbox"]:hover {
-  transform: scale(1.2);
-  transition: transform 0.3s ease; /* Transición para hacer el checkbox más grande al pasar el ratón */
-}
-
-.modal__contente-total {
-  display: flex;
-  justify-content: flex-end;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.modal__contente-total span {
-  color: #22c55e; /* Color para el total estimado */
 }

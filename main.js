@@ -1,12 +1,16 @@
-import { loadEvents } from "./scripts/Eventos.js";
-import { showServices } from "./scripts/Funciones-desarrollo.js";
+import { loadEvents, handleFloatingButtonVisibility } from "./scripts/Eventos.js";
+import {
+  showServices,
+  assignWhatsappContent,
+} from "./scripts/Funciones-desarrollo.js";
 
 (function () {
   function init() {
     // Cargar servicios en el contenedor
+    assignWhatsappContent();
     showServices();
-
-    loadEvents();
+    handleFloatingButtonVisibility()
+    // loadEvents();
   }
 
   document.addEventListener("DOMContentLoaded", () => {
